@@ -7,14 +7,8 @@
   </header>
 </template>
 
-<script>
-export default {
-  setup() {
-    return {
-      menu: ['개발', '일상'],
-    }
-  },
-}
+<script setup>
+const menu = ['개발', '일상']
 </script>
 
 <style scoped>
@@ -29,7 +23,7 @@ nav {
   gap: 0.3rem;
   margin-top: 1rem;
   background-color: #191919;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: 9px;
 }
 
