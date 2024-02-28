@@ -1,33 +1,35 @@
 <template>
   <SiteHeader />
-  <SiteMain />
-  <SiteFooter />
+  <div v-show="isLoading" class="my_loader">
+    <Loading />
+  </div>
 </template>
 
-<script>
+<script setup>
 import SiteHeader from './components/SiteHeader.vue'
-import SiteMain from './components/SiteMain.vue'
-import SiteFooter from './components/SiteFooter.vue'
+import Loading from './components/Loading.vue'
+import { onMounted, ref } from 'vue'
 
-export default {
-  components: { SiteHeader, SiteMain, SiteFooter },
-}
+const isLoading = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    isLoading.value = false
+  }, 2000)
+})
 </script>
 
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css');
-:root {
-  font-family: Pretendard Variable;
-  font-weight: 400;
+.my_loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
 
-  color-scheme: light dark;
-  color: #191919;
-  background-color: #fff;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
