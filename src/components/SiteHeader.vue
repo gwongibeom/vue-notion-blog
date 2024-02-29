@@ -1,6 +1,7 @@
 <template>
   <header>
-    <img src="@/assets/profile_normal.png" class="profile_pic" />
+    <img src="@/assets/profile_normal.png" class="profile_pic" ref="logo" />
+    <Search />
     <nav>
       <a v-for="item of menu" key="item">{{ item }}</a>
     </nav>
@@ -8,6 +9,20 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
+import Search from './header/Search.vue'
+
+const logo = ref(null)
+
+onMounted(() => {
+  logo.value.onmouseover = () => {
+    logo.value.classList.add('hover')
+  }
+  logo.value.onmouseout = () => {
+    logo.value.classList.remove('hover')
+  }
+})
+
 const menu = ['개발', '일상']
 </script>
 
@@ -38,5 +53,10 @@ nav a {
   min-width: 180px;
   border-radius: 100vh;
   border: solid #191919 3px;
+  transition: transform 1s;
+}
+
+.hover {
+  transform: scale(1.2);
 }
 </style>
