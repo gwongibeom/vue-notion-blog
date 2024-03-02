@@ -34,4 +34,9 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 }
+
+main {
+  width: 50%;
+  margin: 10px auto;
+}
 </style>
