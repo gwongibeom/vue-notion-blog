@@ -1,8 +1,8 @@
 <template>
   <main>
-    <component :is="comp[name]" />
     <button @click="name = 'List'">List</button>
     <button @click="name = 'Post'">Post</button>
+    <component :is="comp[name]" />
   </main>
 </template>
 
