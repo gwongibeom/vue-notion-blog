@@ -1,5 +1,6 @@
 <template>
   <SiteHeader />
+  <SiteMain />
   <div v-show="isLoading" class="my_loader">
     <Loading />
   </div>
@@ -8,6 +9,7 @@
 <script setup>
 import SiteHeader from './components/SiteHeader.vue'
 import Loading from './components/Loading.vue'
+import SiteMain from './components/SiteMain.vue'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)

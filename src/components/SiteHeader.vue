@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="@/assets/profile_normal.png" class="profile_pic" ref="logo" />
+    <img src="@/assets/profile_normal.png" class="profile_pic" />
     <Search />
     <nav>
       <a v-for="item of menu" key="item">{{ item }}</a>
@@ -11,17 +11,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import Search from './header/Search.vue'
-
-const logo = ref(null)
-
-onMounted(() => {
-  logo.value.onmouseover = () => {
-    logo.value.classList.add('hover')
-  }
-  logo.value.onmouseout = () => {
-    logo.value.classList.remove('hover')
-  }
-})
 
 const menu = ['개발', '일상']
 </script>
