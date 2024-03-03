@@ -7,7 +7,7 @@ import { ref } from 'vue'
 import { getPageBlocks, NotionRenderer } from 'vue-notion'
 
 const props = defineProps({
-  postId: {
+  BlockId: {
     required: true,
     type: String,
   },
@@ -15,7 +15,7 @@ const props = defineProps({
 
 const blockMap = ref(null)
 
-getPageBlocks(props.postId).then((value) => {
+getPageBlocks(props.BlockId).then((value) => {
   blockMap.value = value
 })
 </script>

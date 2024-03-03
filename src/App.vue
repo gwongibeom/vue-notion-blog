@@ -1,6 +1,6 @@
 <template>
-  <SiteHeader />
-  <SiteMain />
+  <SiteHeader @change-category="name = 'List'" />
+  <SiteMain :name="name" @change-id="name = 'Post'" />
   <SiteFooter />
   <div v-show="isLoading" class="my_loader">
     <Loading />
@@ -15,6 +15,8 @@ import { onMounted, ref } from 'vue'
 import SiteFooter from './components/SiteFooter.vue'
 
 const isLoading = ref(true)
+
+const name = ref('List')
 
 onMounted(() => {
   setTimeout(() => {

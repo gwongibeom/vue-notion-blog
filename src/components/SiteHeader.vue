@@ -3,7 +3,9 @@
     <img src="@/assets/profile_normal.png" class="profile_pic" />
     <Search />
     <nav>
-      <a v-for="item of menu" key="item">{{ item }}</a>
+      <a v-for="item of menu" key="item" @click="$emit('change-category')">{{
+        item
+      }}</a>
     </nav>
   </header>
 </template>

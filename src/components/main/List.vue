@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="post of list" key="post.id">
+    <li v-for="post of list" key="post.id" @click="$emit('changeId', post.id)">
       <span>{{ post.category }}</span>
       <span>{{ post.title }}</span>
     </li>
@@ -22,6 +22,7 @@ li {
   list-style-type: none;
   margin-bottom: 0.5rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 li span:nth-child(1) {
