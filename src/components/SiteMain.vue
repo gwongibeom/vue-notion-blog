@@ -8,6 +8,7 @@
           $emit('change-id')
         }
       "
+      :category="category"
     />
     <Post v-if="name == 'Post'" :BlockId="id" />
   </main>
@@ -17,6 +18,9 @@
 import { ref, defineAsyncComponent } from 'vue'
 
 defineProps({
+  category: {
+    type: String,
+  },
   name: {
     type: String,
     required: true,
