@@ -1,6 +1,7 @@
 <template>
   <SiteHeader />
   <SiteMain />
+  <SiteFooter />
   <div v-show="isLoading" class="my_loader">
     <Loading />
   </div>
@@ -11,13 +12,14 @@ import SiteHeader from './components/SiteHeader.vue'
 import Loading from './components/Loading.vue'
 import SiteMain from './components/SiteMain.vue'
 import { onMounted, ref } from 'vue'
+import SiteFooter from './components/SiteFooter.vue'
 
 const isLoading = ref(true)
 
 onMounted(() => {
   setTimeout(() => {
     isLoading.value = false
-  }, 2000)
+  }, 0)
 })
 </script>
 
@@ -36,7 +38,7 @@ onMounted(() => {
 }
 
 main {
-  width: 50%;
+  width: 80%;
   margin: 10px auto;
 }
 </style>
