@@ -1,6 +1,6 @@
 <template>
-  <SiteHeader @change-category="changeCategory" />
-  <SiteMain :name="name" :category="category" @change-id="name = 'Post'" />
+  <SiteHeader />
+  <SiteMain />
   <SiteFooter />
   <div v-show="isLoading" class="my_loader">
     <Loading />
@@ -8,20 +8,29 @@
 </template>
 
 <script setup>
+import { onMounted, ref, provide } from 'vue'
 import SiteHeader from './components/SiteHeader.vue'
-import Loading from './components/Loading.vue'
 import SiteMain from './components/SiteMain.vue'
-import { onMounted, ref } from 'vue'
 import SiteFooter from './components/SiteFooter.vue'
+import Loading from './components/Loading.vue'
 
 const isLoading = ref(true)
 const name = ref('List')
 const category = ref('')
 
-const changeCategory = function (newCate) {
-  name.value = 'List'
-  category.value = newCate
-}
+provide('name', {
+  name,
+  updateName(newName) {
+    name.value = newName
+  },
+})
+
+provide('category', {
+  category,
+  updateCategory(newCate) {
+    category.value = newCate
+  },
+})
 
 onMounted(() => {
   setTimeout(() => {

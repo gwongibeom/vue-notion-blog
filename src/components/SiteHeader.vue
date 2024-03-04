@@ -6,7 +6,12 @@
       <a
         v-for="item of menu"
         key="item"
-        @click="$emit('change-category', item)"
+        @click="
+          (e) => {
+            updateName('List')
+            updateCategory(item)
+          }
+        "
         >{{ item }}</a
       >
     </nav>
@@ -14,8 +19,11 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import Search from './header/Search.vue'
+
+const { updateName } = inject('name')
+const { updateCategory } = inject('category')
 
 const menu = ['개발', '일상']
 </script>

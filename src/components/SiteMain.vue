@@ -5,30 +5,18 @@
       @changeId="
         (newId) => {
           id = newId
-          $emit('change-id')
         }
       "
-      :category="category"
     />
     <Post v-if="name == 'Post'" :BlockId="id" />
   </main>
 </template>
 
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, inject } from 'vue'
 
-defineProps({
-  category: {
-    type: String,
-  },
-  name: {
-    type: String,
-    required: true,
-    validator(value) {
-      return ['List', 'Post']
-    },
-  },
-})
+const { name } = inject('name')
+
 const id = ref('b37bedee3cea4ad491d2e8f9bf8f48c0')
 
 const List = defineAsyncComponent(() => import('@/components/main/List.vue'))
