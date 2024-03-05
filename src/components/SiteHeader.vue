@@ -1,15 +1,19 @@
 <template>
   <header>
     <img src="@/assets/profile_normal.png" class="profile_pic" />
-    <Search />
+    <Search
+      :search="modelValue"
+      :searchModifiers="{ trim: true }"
+      @update:search="(newVal) => $emit('update:modelValue', newVal)"
+    />
     <nav>
       <a
         v-for="item of menu"
         key="item"
         @click="
-          (e) => {
-            updateName('List')
-            updateCategory(item)
+          () => {
+            updateName('List');
+            updateCategory(item);
           }
         "
         >{{ item }}</a
@@ -19,13 +23,16 @@
 </template>
 
 <script setup>
-import { onMounted, ref, inject } from 'vue'
-import Search from './header/Search.vue'
+import { onMounted, ref, inject } from 'vue';
+import Search from './header/Search.vue';
 
-const { updateName } = inject('name')
-const { updateCategory } = inject('category')
+defineProps(['modelValue']);
+defineEmits(['update:modelValue']);
 
-const menu = ['개발', '일상']
+const { updateName } = inject('name');
+const { updateCategory } = inject('category');
+
+const menu = ['개발', '일상'];
 </script>
 
 <style scoped>

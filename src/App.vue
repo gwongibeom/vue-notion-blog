@@ -1,6 +1,6 @@
 <template>
-  <SiteHeader />
-  <SiteMain />
+  <SiteHeader v-model="keyword" />
+  <SiteMain :keyword="keyword" />
   <SiteFooter />
   <div v-show="isLoading" class="my_loader">
     <Loading />
@@ -8,35 +8,36 @@
 </template>
 
 <script setup>
-import { onMounted, ref, provide } from 'vue'
-import SiteHeader from './components/SiteHeader.vue'
-import SiteMain from './components/SiteMain.vue'
-import SiteFooter from './components/SiteFooter.vue'
-import Loading from './components/Loading.vue'
+import { onMounted, ref, provide } from 'vue';
+import SiteHeader from './components/SiteHeader.vue';
+import SiteMain from './components/SiteMain.vue';
+import SiteFooter from './components/SiteFooter.vue';
+import Loading from './components/Loading.vue';
 
-const isLoading = ref(true)
-const name = ref('List')
-const category = ref('')
+const isLoading = ref(true);
+const name = ref('List');
+const category = ref('');
+const keyword = ref('');
 
 provide('name', {
   name,
   updateName(newName) {
-    name.value = newName
+    name.value = newName;
   },
-})
+});
 
 provide('category', {
   category,
   updateCategory(newCate) {
-    category.value = newCate
+    category.value = newCate;
   },
-})
+});
 
 onMounted(() => {
   setTimeout(() => {
-    isLoading.value = false
-  }, 0)
-})
+    isLoading.value = false;
+  }, 0);
+});
 </script>
 
 <style>

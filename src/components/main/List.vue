@@ -5,8 +5,8 @@
       key="post.id"
       @click="
         (e) => {
-          $emit('changeId', post.id)
-          updateName('Post')
+          $emit('changeId', post.id);
+          updateName('Post');
         }
       "
     >
@@ -17,31 +17,28 @@
 </template>
 
 <script setup>
-import { ref, computed, inject } from 'vue'
-import { getPageTable } from 'vue-notion'
+import { ref, computed, inject } from 'vue';
+import { getPageTable } from 'vue-notion';
 
-const { updateName } = inject('name')
-const { category } = inject('category')
+const { updateName } = inject('name');
+const { category } = inject('category');
 
-const list = ref([])
+const list = ref([]);
+
+const props = defineProps(['keyword']);
 
 const filteredList = computed(() => {
-  if (category.value == '') {
-    return list.value
-  } else {
-    const result = []
-    for (const item of list.value) {
-      if (item.category == category.value) {
-        result.push(item)
-      }
-    }
-    return result
-  }
-})
+  return list.value.filter((item) => {
+    return (
+      (item.category == category.value || category.value == '') &&
+      item.title.includes(props.keyword)
+    );
+  });
+});
 
 getPageTable('a42275a32e4a4277ac22165d9404e4ab').then((value) => {
-  list.value = value
-})
+  list.value = value;
+});
 </script>
 <style scoped>
 li {
